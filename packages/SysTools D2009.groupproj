@@ -1,0 +1,72 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{0DAA1B8E-F4FD-49C2-A624-44B4FA6DCE21}</ProjectGuid>
+		</PropertyGroup>
+		<ItemGroup>
+			<Projects Include="S404_r120.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="S404_d120.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="S404br120.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="S404bd120.dproj">
+				<Dependencies/>
+			</Projects>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Default.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Default.Personality/>
+			</BorlandProject>
+		</ProjectExtensions>
+		<Target Name="S404_r120">
+			<MSBuild Projects="S404_r120.dproj"/>
+		</Target>
+		<Target Name="S404_r120:Clean">
+			<MSBuild Targets="Clean" Projects="S404_r120.dproj"/>
+		</Target>
+		<Target Name="S404_r120:Make">
+			<MSBuild Targets="Make" Projects="S404_r120.dproj"/>
+		</Target>
+		<Target Name="S404_d120">
+			<MSBuild Projects="S404_d120.dproj"/>
+		</Target>
+		<Target Name="S404_d120:Clean">
+			<MSBuild Targets="Clean" Projects="S404_d120.dproj"/>
+		</Target>
+		<Target Name="S404_d120:Make">
+			<MSBuild Targets="Make" Projects="S404_d120.dproj"/>
+		</Target>
+		<Target Name="S404br120">
+			<MSBuild Projects="S404br120.dproj"/>
+		</Target>
+		<Target Name="S404br120:Clean">
+			<MSBuild Targets="Clean" Projects="S404br120.dproj"/>
+		</Target>
+		<Target Name="S404br120:Make">
+			<MSBuild Targets="Make" Projects="S404br120.dproj"/>
+		</Target>
+		<Target Name="S404bd120">
+			<MSBuild Projects="S404bd120.dproj"/>
+		</Target>
+		<Target Name="S404bd120:Clean">
+			<MSBuild Targets="Clean" Projects="S404bd120.dproj"/>
+		</Target>
+		<Target Name="S404bd120:Make">
+			<MSBuild Targets="Make" Projects="S404bd120.dproj"/>
+		</Target>
+		<Target Name="Build">
+			<CallTarget Targets="S404_r120;S404_d120;S404br120;S404bd120"/>
+		</Target>
+		<Target Name="Clean">
+			<CallTarget Targets="S404_r120:Clean;S404_d120:Clean;S404br120:Clean;S404bd120:Clean"/>
+		</Target>
+		<Target Name="Make">
+			<CallTarget Targets="S404_r120:Make;S404_d120:Make;S404br120:Make;S404bd120:Make"/>
+		</Target>
+		<Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+	</Project>
