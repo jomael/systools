@@ -2584,7 +2584,7 @@ end;
 
 function StrChInsertL(const S : String; C : Char; Pos : Cardinal) : String;
 var
-  Temp : UnicodeString;
+  Temp : string;
 begin
   SetLength(Temp, 1);
   Temp[1] := C;

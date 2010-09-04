@@ -24,12 +24,12 @@
  * ***** END LICENSE BLOCK ***** *)
 
 {**********************************************************}
-{* SysTools: S404_D90.DPK 4.04                            *}
+{* SysTools: S404BR90.DPK 4.04                            *}
 {**********************************************************}
-{* SysTools: Delphi 2006/Win32 Design-Time Package Source *}
+{* SysTools: Delphi 2006/Win32 DB Run-Time Package Source *}
 {**********************************************************}
 
-package S404_d140;
+package S404br;
 
 {$R *.res}
 {$ALIGN 8}
@@ -50,20 +50,25 @@ package S404_d140;
 {$STACKFRAMES OFF}
 {$TYPEDADDRESS OFF}
 {$VARSTRINGCHECKS ON}
-{$WRITEABLECONST OFF}
+{$WRITEABLECONST ON}
 {$MINENUMSIZE 1}
-{$IMAGEBASE $400000}
-{$DESCRIPTION 'TurboPower SysTools 4.04 Design-time package - VCL120'}
-{$DESIGNONLY}
+{$IMAGEBASE $2600000}
+{$DESCRIPTION 'TurboPower SysTools 4.04 DB Run-time package - VCL120'}
+{$LIBSUFFIX '120'}
+{$RUNONLY}
 {$IMPLICITBUILD OFF}
 
 requires
-  designide,
-  S404_r140;
+  vcl,
+  vcldb,
+  vclx,
+  bdertl,
+  S404_r;
 
 contains
-  StReg in '..\source\StReg.pas',
-  StPropEd in '..\source\StPropEd.pas',
-  StAbout0 in '..\source\StAbout0.pas';
+  StDbBarC in '..\..\source\StDbBarC.pas',
+  StDbPNBC in '..\..\source\StDbPNBC.pas',
+  StExport in '..\..\source\StExport.pas',
+  StDb2DBC in '..\..\source\StDb2DBC.pas';
 
 end.
