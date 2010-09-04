@@ -29,7 +29,7 @@
 {* SysTools: Delphi 2006/Win32 DB Design-Time Package Source *}
 {*************************************************************}
 
-package S404bd140;
+package S404bd;
 
 {$R *.res}
 {$ALIGN 8}
@@ -54,13 +54,14 @@ package S404bd140;
 {$MINENUMSIZE 1}
 {$IMAGEBASE $400000}
 {$DESCRIPTION 'TurboPower SysTools 4.04 DB Design-time package - VCL140'}
+{$LIBSUFFIX '140'}
 {$DESIGNONLY}
 {$IMPLICITBUILD OFF}
 
 requires
-  S404br140;
+  S404br;
 
 contains
-  StRegDb in '..\source\StRegDb.pas';
+  StRegDb in '..\..\source\StRegDb.pas';
 
 end.

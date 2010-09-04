@@ -191,8 +191,10 @@ function AnsiELFHashStr(const S : AnsiString; Size : Integer) : Integer;
 
 implementation
 
+{$IFDEF UNICODE}
 uses
   AnsiStrings;
+{$ENDIF}
 
 {$IFDEF ThreadSafe}
 var

@@ -23,13 +23,13 @@
  *
  * ***** END LICENSE BLOCK ***** *)
 
-{*************************************************************}
-{* SysTools: S404BD90.DPK 4.04                               *}
-{*************************************************************}
-{* SysTools: Delphi 2006/Win32 DB Design-Time Package Source *}
-{*************************************************************}
+{**********************************************************}
+{* SysTools: S404_D90.DPK 4.04                            *}
+{**********************************************************}
+{* SysTools: Delphi 2006/Win32 Design-Time Package Source *}
+{**********************************************************}
 
-package S404bd120;
+package S404_d;
 
 {$R *.res}
 {$ALIGN 8}
@@ -42,25 +42,29 @@ package S404bd120;
 {$LOCALSYMBOLS ON}
 {$LONGSTRINGS ON}
 {$OPENSTRINGS ON}
-{$OPTIMIZATION OFF}
+{$OPTIMIZATION ON}
 {$OVERFLOWCHECKS OFF}
-{$RANGECHECKS ON}
+{$RANGECHECKS OFF}
 {$REFERENCEINFO OFF}
 {$SAFEDIVIDE OFF}
-{$STACKFRAMES ON}
+{$STACKFRAMES OFF}
 {$TYPEDADDRESS OFF}
 {$VARSTRINGCHECKS ON}
 {$WRITEABLECONST ON}
 {$MINENUMSIZE 1}
 {$IMAGEBASE $400000}
-{$DESCRIPTION 'TurboPower SysTools 4.04 DB Design-time package - VCL120'}
+{$DESCRIPTION 'TurboPower SysTools 4.04 Design-time package - VCL120'}
+{$LIBSUFFIX '120'}
 {$DESIGNONLY}
 {$IMPLICITBUILD OFF}
 
 requires
-  S404br120;
+  designide,
+  S404_r;
 
 contains
-  StRegDb in '..\source\StRegDb.pas';
+  StReg in '..\..\source\StReg.pas',
+  StPropEd in '..\..\source\StPropEd.pas',
+  StAbout0 in '..\..\source\StAbout0.pas';
 
 end.
