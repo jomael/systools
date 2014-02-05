@@ -219,14 +219,14 @@ var
     {-Return the day of the week specified by WeekDay as a string in Dest.
     Will honor international names}
   begin
-    Result := LongDayNames[Ord(WeekDay)+1];
+    Result := {$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}LongDayNames[Ord(WeekDay)+1];
   end;
 
   function MonthToString(const Month : Integer) : string;
   {-Return the month as a string. Will honor international names}
   begin
     if (Month >= 1) and (Month <= 12) then
-      Result := LongMonthNames[Month]
+      Result := {$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}LongMonthNames[Month]
     else
        Result := '';
   end;
@@ -282,7 +282,7 @@ var
     S := S + StringOfChar(' ', Width - Len);
 
     for I := 1 to 12 do begin
-      T := UpperCase(LongMonthNames[I]);
+      T := UpperCase({$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}LongMonthNames[I]);
       Len := Length(T);
 //      SetLength(T,Width);
 //      if Width > Len then
@@ -472,14 +472,14 @@ var
       if UCh = WeekDayOnlyU then
         case I of
           Ord(Sunday)..Ord(Saturday) :
-            Tmp := LongDayNames[I+1];
+            Tmp := {$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}LongDayNames[I+1];
           else
             Tmp := '';
         end
       else
         case I of
           1..12 :
-            Tmp := LongMonthNames[I];
+            Tmp := {$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}LongMonthNames[I];
           else
             Tmp := '';
         end;
@@ -872,7 +872,7 @@ var
     begin
       L := 0;
       for I := 1 to 12 do
-        L := Maxword(L, Length(LongMonthNames[I]));
+        L := Maxword(L, Length({$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}LongMonthNames[I]));
       LongestMonthName := L;
     end;
 
@@ -883,7 +883,7 @@ var
     begin
       L := 0;
       for D := Sunday to Saturday do
-        L := Maxword(L, Length(LongDayNames[Ord(D)+1]));
+        L := Maxword(L, Length({$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}LongDayNames[Ord(D)+1]));
       LongestDayName := L;
     end;
 
@@ -1045,11 +1045,11 @@ var
     end;
 
   begin
-    wTLZero := LongTimeFormat[2] = 'h';
-    w12Hour := LongTimeFormat[length(LongTimeFormat)] = 'M';
+    wTLZero := {$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}LongTimeFormat[2] = 'h';
+    w12Hour := {$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}LongTimeFormat[length({$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}LongTimeFormat)] = 'M';
 
-    wColonChar := TimeSeparator;
-    wSlashChar := DateSeparator;
+    wColonChar := {$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}TimeSeparator;
+    wSlashChar := {$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}DateSeparator;
 
     GetProfileString('intl','s1159','AM', S, Length(S));
     w1159 := StrPas(S);
@@ -1057,13 +1057,13 @@ var
     w2359 := StrPas(S);
 
     {get short date mask and fix it up}
-    wShortDate := ShortDateFormat;
+    wShortDate := {$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}ShortDateFormat;
     for I := 1 to Length(wShortDate) do
       if (wShortDate[I] = wSlashChar) then
         wShortDate[I] := '/';
 
     {get long date mask and fix it up}
-    wLongDate := LongDateFormat;
+    wLongDate := {$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}LongDateFormat;
     ExtractSubString(LongDateSub1, wldSub1);
     ExtractSubString(LongDateSub2, wldSub2);
     ExtractSubString(LongDateSub3, wldSub3);

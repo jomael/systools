@@ -642,7 +642,7 @@ var
 begin
   Result := TrimSpacesS(S);
   if Result <> '' then begin
-    if StrChPosS(Result, DecimalSeparator, P) then begin
+    if StrChPosS(Result, {$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}DecimalSeparator, P) then begin
       Result[P] := '.';
       if P = Byte(Result[0]) then
         Result[0] := AnsiChar(Pred(P));

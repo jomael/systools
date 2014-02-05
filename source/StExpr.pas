@@ -853,7 +853,7 @@ or one past the end of the string if it terminates prematurely
   for i := 1 to Length(S) do begin
   case State of
     ncStart : begin
-      if P^ = DecimalSeparator then begin
+      if P^ = {$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}DecimalSeparator then begin
         State := ncStartDecimal;   { decimal point detected in mantissa }
       end else
 
@@ -888,7 +888,7 @@ or one past the end of the string if it terminates prematurely
     end;
 
     ncSign : begin
-      if P^ = DecimalSeparator then begin
+      if P^ = {$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}DecimalSeparator then begin
         State := ncDecimal;   { decimal point detected in mantissa }
       end else
 
@@ -909,7 +909,7 @@ or one past the end of the string if it terminates prematurely
     end;
 
     ncWhole : begin
-      if P^ = DecimalSeparator then begin
+      if P^ = {$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}DecimalSeparator then begin
         State := ncDecimal;   { decimal point detected in mantissa }
       end else
 
@@ -1094,7 +1094,7 @@ begin
     ssNum :
       begin
         {evaluate real number string}
-        if (eTokenStr[1] = DecimalSeparator{'.'}) then
+        if (eTokenStr[1] = {$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}DecimalSeparator{'.'}) then
           eTokenStr := '0' + eTokenStr;
         {Val(eTokenStr, NumVal, Code);}
         TpVal(eTokenStr, NumVal, Code);
@@ -1636,7 +1636,7 @@ initialization
 {$IFNDEF VERSION4}
   GetListSep;
 {$ENDIF VERSION4}
-  Numeric := ['0'..'9', {'.'}DecimalSeparator];
-  StExprOperators[ssComma] := ListSeparator;
+  Numeric := ['0'..'9', {'.'}{$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}DecimalSeparator];
+  StExprOperators[ssComma] := {$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}ListSeparator;
 end.
 

@@ -157,6 +157,10 @@
  {$ENDIF}
 {$ENDIF}
 
+{$IF compilerversion >= 23}  { Delphi XE2 }
+  {$DEFINE DELPHIXE2}
+{$ENDIF}
+
 {$IFDEF VERSION4}
   {$DEFINE HasLongWord}         { D4 and above have a true LongWord type }
   {$DEFINE HasInt64 }           { D4 and above have a 64-bit Integer }
