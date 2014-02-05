@@ -635,7 +635,7 @@ var
 begin
   Result := TrimSpacesW(S);
   if Result <> '' then begin
-    if StrChPosW(Result, WideChar(DecimalSeparator), P) then begin
+    if StrChPosW(Result, WideChar({$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}DecimalSeparator), P) then begin
       C := P;
       Result[C] := '.';
       if C = Length(Result) then

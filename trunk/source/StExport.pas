@@ -381,7 +381,7 @@ end;
 function GetDecimals(const DataStr : AnsiString): Integer;
 { determine decimal places for float formatted string }
 begin
-  Result := Length(DataStr) - Pos(DecimalSeparator, DataStr);
+  Result := Length(DataStr) - Pos({$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}DecimalSeparator, DataStr);
   try
     StrToFloat(DataStr);
   except

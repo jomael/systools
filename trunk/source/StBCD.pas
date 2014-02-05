@@ -289,7 +289,7 @@ var
 begin
   I := Pos('.', S);
   if I > 0 then
-    S[I] := DecimalSeparator;
+    S[I] := {$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}DecimalSeparator;
   Result := S;
 end;
 
@@ -715,9 +715,9 @@ var
   S : string[59];
 begin
   S := StrExpBcd(B, 0);
-  if (DecimalSeparator <> '.') then begin
-    while (pos(DecimalSeparator, S) > 0) do
-      S[pos(DecimalSeparator, S)] := '.';
+  if ({$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}DecimalSeparator <> '.') then begin
+    while (pos({$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}DecimalSeparator, S) > 0) do
+      S[pos({$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}DecimalSeparator, S)] := '.';
   end;
   Val(S, Result, Code);
 end;
@@ -1255,9 +1255,9 @@ var
     I : Integer;
   begin
     I := StartI;
-    while (I > 0) and (Result[I] = '0') and (Result[I] <> DecimalSeparator) do
+    while (I > 0) and (Result[I] = '0') and (Result[I] <> {$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}DecimalSeparator) do
       dec(I);
-    if Result[I] = DecimalSeparator then
+    if Result[I] = {$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}DecimalSeparator then
       dec(I);
     Delete(Result, I+1, EndI-I);
   end;
@@ -1420,10 +1420,10 @@ var
             end;
           end;
       else
-        if Ch = ThousandSeparator then
+        if Ch = {$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}ThousandSeparator then
           ThousandSep := True;
 
-        if Ch = DecimalSeparator  then
+        if Ch = {$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}DecimalSeparator  then
           if DecimalIndex = -1 then
             DecimalIndex := DigitCount;
       end;
@@ -1469,14 +1469,14 @@ var
       BVal := 0;
 
     if DigitPlace = 0 then begin
-      StoreChar(DecimalSeparator);
+      StoreChar({$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}DecimalSeparator);
       StoreChar(Char(BVal+Byte('0')));
     end else begin
       StoreChar(Char(BVal+Byte('0')));
       if ThousandSep then
         if DigitPlace > 1 then
           if DigitPlace mod 3 = 1 then
-            StoreChar(ThousandSeparator);
+            StoreChar({$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}ThousandSeparator);
     end;
 
     dec(DigitPlace);
@@ -1640,7 +1640,7 @@ Restart:
             StoreChar(Ch);
       else
         {these characters are automatically inserted in StoreDigit};
-        if not (Ch in [ThousandSeparator, DecimalSeparator]) then
+        if not (Ch in [{$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}ThousandSeparator, {$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}DecimalSeparator]) then
           StoreChar(Ch);
       end;
 
@@ -2250,7 +2250,7 @@ begin
     {number is less than 1}
     AddChar('0');
     if Exponent <> 0 then begin
-      AddChar(DecimalSeparator);
+      AddChar({$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}DecimalSeparator);
       for I := 1 to ExpBias-Exponent do
         if O <= LongInt(Width) then
           AddChar('0');
@@ -2270,7 +2270,7 @@ begin
       dec(I);
     while (Digits > 0) and (O <= LongInt(Width)) do begin
       if O = DecimalPos then
-        AddChar(DecimalSeparator);
+        AddChar({$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}DecimalSeparator);
       AddChar(Char(UB[I]+Byte('0')));
       dec(I);
       dec(Digits);
@@ -2280,7 +2280,7 @@ begin
   {add trailing zeros, if any}
   while O <= LongInt(Width) do begin
     if O = DecimalPos then
-      AddChar(DecimalSeparator);
+      AddChar({$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}DecimalSeparator);
     if O <= LongInt(Width) then
       AddChar('0');
   end;
@@ -2347,7 +2347,7 @@ begin
   I := MantissaDigits;
   AddChar(Char(UB[I]+Byte('0')));
   dec(I);
-  AddChar(DecimalSeparator);
+  AddChar({$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}DecimalSeparator);
   while O < LongInt(Width-3) do begin
     AddChar(Char(UB[I]+Byte('0')));
     dec(I);
@@ -2474,7 +2474,7 @@ begin
   end;
 
   {handle first digit}
-  if SChar(I) <> DecimalSeparator then begin
+  if SChar(I) <> {$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}DecimalSeparator then begin
     if not IsDigit(SChar(I)) then
       RaiseBcdError(stscBcdBadFormat);
 
@@ -2491,7 +2491,7 @@ begin
   end;
 
   {handle dot}
-  if SChar(I) = DecimalSeparator then begin
+  if SChar(I) = {$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}DecimalSeparator then begin
     inc(I);
     if Digits = 0 then begin
       {no digits before dot, skip zeros after dot}
@@ -2891,9 +2891,9 @@ end;
 
 initialization
   ZeroBcd := FastVal('0.0');
-  MinBcd  := ValBcd('-9'+DecimalSeparator+'9E+63');
+  MinBcd  := ValBcd('-9'+{$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}DecimalSeparator+'9E+63');
   BadBcd  := MinBcd;
-  MaxBcd  := ValBcd('9'+DecimalSeparator+'9E+63');
+  MaxBcd  := ValBcd('9'+{$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}DecimalSeparator+'9E+63');
   PiBcd   := FastVal('3.1415926535897932384626433832795028841971');
   Ln10Bcd := FastVal('2.3025850929940456840179914546843642076011');
   eBcd    := FastVal('2.7182818284590452353602874713526624977572');

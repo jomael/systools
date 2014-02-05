@@ -5067,21 +5067,21 @@ procedure TStMaxiCodeBarcode.TextToCodewords;
   begin
     case FMode of
       cmMode2 :
-        Move (FMessage, FCodewords[20], 84);
+        System.Move (FMessage, FCodewords[20], 84);
       cmMode3 :
-        Move (FMessage, FCodewords[20], 84);
+        System.Move (FMessage, FCodewords[20], 84);
       cmMode4 :
         begin
-          Move (FMessage, FCodeWords[1], 9); 
-          Move (FMessage[9], FCodewords[20], 84);
+          System.Move (FMessage, FCodeWords[1], 9);
+          System.Move (FMessage[9], FCodewords[20], 84);
         end;
       cmMode5 :
         begin
-          Move (FMessage, FCodeWords[1], 9);
-          Move (FMessage[9], FCodewords[20], 68);
+          System.Move (FMessage, FCodeWords[1], 9);
+          System.Move (FMessage[9], FCodewords[20], 68);
         end;
       cmMode6 :
-        Move (FMessage, FCodewords[20], 84);
+        System.Move (FMessage, FCodewords[20], 84);
     end;
   end;
 

@@ -1665,7 +1665,7 @@ var
 begin
   Result := TrimSpacesPrimZ(S);
   if StrLen(Result) <> 0 then begin
-    if StrChPosZ(Result, AnsiChar(DecimalSeparator), P) then begin
+    if StrChPosZ(Result, AnsiChar({$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}DecimalSeparator), P) then begin
       Result[P] := '.';
       if Succ(P) = StrLen(Result) then
         Result[P] := #0;
@@ -1683,7 +1683,7 @@ var
 begin
   Result := TrimSpacesPrimZ(S);
   if StrLen(Result) <> 0 then begin
-    if StrChPosZ(Result, DecimalSeparator, P) then begin
+    if StrChPosZ(Result, {$IFDEF DELPHIXE2}FormatSettings.{$ENDIF}DecimalSeparator, P) then begin
       Result[P] := '.';
       if Succ(P) = StrLen(Result) then
         Result[P] := #0;
