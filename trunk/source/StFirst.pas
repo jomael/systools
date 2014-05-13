@@ -93,7 +93,7 @@ var
 begin
   if (strlen(AString) > 0) then begin
     CDS.dwData := WMCOPYID;
-    CDS.cbData := StrLen(AString) + 1;
+    CDS.cbData := (StrLen(AString) + 1) * SizeOf(Char);
     CDS.lpData := AString;
   end else begin
     CDS.dwData := WMCOPYID;
